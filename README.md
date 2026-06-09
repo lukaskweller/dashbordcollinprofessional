@@ -66,3 +66,10 @@ https://lukaskweller.github.io/dashbordrepresetantecollin/?v=executive
 - No celular, removida a exibição do nome da planilha no cabeçalho.
 - Título inicial alterado para boas-vindas ao representante.
 - Adicionado calendário comercial com resumo do dia.
+
+
+## Executive Clean
+- Removido Modo Reunião.
+- Removida aba Perfil Comercial para evitar duplicação.
+- Cabeçalho limpo sem nome da planilha.
+- Hero ajustado para boas-vindas e gestão comercial.
