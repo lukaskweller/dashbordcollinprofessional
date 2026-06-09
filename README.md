@@ -1,34 +1,27 @@
-# Collin Professional Dashboard 5.5 Executive Stable
+# Collin Professional Dashboard 6.0 Plus
 
-Versão gerada do zero para corrigir erro de abertura no GitHub Pages.
+Versão completa gerada com base na planilha atualizada: ATUALIZADA(2).xlsx
 
-Arquivos para subir na raiz do repositório:
-- index.html
-- styles.css
-- app.js
-- data/clientes.json
-- assets/icon.svg
+Inclui:
+- Banner executivo sem textos técnicos
+- Logo Collin moderno
+- Login local
+- Melhorias para iPhone
+- Gráficos próprios sem dependência externa
+- Base local data/clientes.json
+- AutoSync em segundo plano com Google Sheets
+- Cobrança, visitas, metas, comissão, performance e relatório
 
-Importante:
-- Esta versão NÃO usa Chart.js externo.
-- Esta versão NÃO registra service-worker, evitando cache quebrado.
-- Abre com data/clientes.json local e tenta AutoSync com Google Sheets em segundo plano.
-- Se o Google Sheets falhar, o dashboard continua funcionando.
+Senha padrão do login:
+collin2026
 
-Depois de subir, abra:
-https://lukaskweller.github.io/dashbordrepresetantecollin/?v=54
+Abra no GitHub Pages com:
+https://lukaskweller.github.io/dashbordrepresetantecollin/?v=60
 
-
-## Versão 5.5
-- Adicionada aba "Editor de Textos".
-- Permite alterar títulos e descrições direto no dashboard.
-- Salva no navegador via localStorage.
-- Permite exportar/importar configurações de texto em JSON.
-
-
-## Versão 5.6
-- Logo moderno Collin inserido no menu e login.
-- Tela de login local ao abrir pela primeira vez.
-- Senha padrão: collin2026.
-- Botão Sair no topo.
-- Melhorias para iPhone: menu horizontal, fontes em 16px nos inputs, layout mobile refinado.
+Resumo da base:
+Clientes: 103
+Ativos: 57
+Inativos: 46
+Carteira: 31314.1
+Devedor: 26024.5
+Recebido semana: 5054.7
