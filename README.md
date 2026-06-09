@@ -24,3 +24,11 @@ https://lukaskweller.github.io/dashbordrepresetantecollin/?v=54
 - Permite alterar títulos e descrições direto no dashboard.
 - Salva no navegador via localStorage.
 - Permite exportar/importar configurações de texto em JSON.
+
+
+## Versão 5.6
+- Logo moderno Collin inserido no menu e login.
+- Tela de login local ao abrir pela primeira vez.
+- Senha padrão: collin2026.
+- Botão Sair no topo.
+- Melhorias para iPhone: menu horizontal, fontes em 16px nos inputs, layout mobile refinado.

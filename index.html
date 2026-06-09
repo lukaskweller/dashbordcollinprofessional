@@ -3,14 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Collin Professional Dashboard 5.5</title>
+<title>Collin Professional Dashboard 5.6</title>
 <meta name="theme-color" content="#C89080">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <svg viewBox="0 0 120 120" aria-label="Collin Professional">
+        <defs>
+          <linearGradient id="loginCollinGradient" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#F3C4B8"/>
+            <stop offset="55%" stop-color="#C89080"/>
+            <stop offset="100%" stop-color="#8B5E55"/>
+          </linearGradient>
+        </defs>
+        <rect x="8" y="8" width="104" height="104" rx="30" fill="url(#loginCollinGradient)"/>
+        <path d="M37 78c-8-8-12-18-10-29 3-17 18-29 36-28 10 1 19 5 26 13l-13 12c-4-4-8-6-14-6-9 0-16 6-18 15-2 10 5 20 16 21 6 1 12-1 16-6l13 12c-8 9-18 13-30 13-8 0-15-3-22-8z" fill="#fff"/>
+        <path d="M61 36h16c11 0 19 7 19 17s-8 17-19 17H65v18H48V36h13zm4 15v6h10c3 0 5-1 5-4s-2-4-5-4H65z" fill="#111827" opacity=".88"/>
+      </svg>
+    </div>
+    <span class="login-eyebrow">Collin Professional</span>
+    <h1>Acesso ao Dashboard</h1>
+    <p>Digite seus dados para abrir o painel comercial.</p>
+
+    <form id="loginForm" class="login-form">
+      <label>Usuário
+        <input id="loginUser" autocomplete="username" placeholder="Ex: Lucas">
+      </label>
+      <label>Senha
+        <input id="loginPass" type="password" autocomplete="current-password" placeholder="Digite a senha">
+      </label>
+      <button class="btn" type="submit">Entrar no Dashboard</button>
+      <small class="login-hint">Senha padrão: <b>collin2026</b>. Você pode alterar depois no próprio navegador.</small>
+    </form>
+  </div>
+</div>
+
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="brand-mark">CP</div><div><strong>Collin Professional</strong><span>Executive 5.5</span></div></div>
+  <div class="brand"><div class="brand-logo">
+    <svg viewBox="0 0 120 120" aria-label="Collin Professional">
+      <defs><linearGradient id="collinGradient" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#F3C4B8"/><stop offset="55%" stop-color="#C89080"/><stop offset="100%" stop-color="#8B5E55"/></linearGradient></defs>
+      <rect x="8" y="8" width="104" height="104" rx="30" fill="url(#collinGradient)"/>
+      <path d="M37 78c-8-8-12-18-10-29 3-17 18-29 36-28 10 1 19 5 26 13l-13 12c-4-4-8-6-14-6-9 0-16 6-18 15-2 10 5 20 16 21 6 1 12-1 16-6l13 12c-8 9-18 13-30 13-8 0-15-3-22-8z" fill="#fff"/>
+      <path d="M61 36h16c11 0 19 7 19 17s-8 17-19 17H65v18H48V36h13zm4 15v6h10c3 0 5-1 5-4s-2-4-5-4H65z" fill="#111827" opacity=".88"/>
+    </svg>
+  </div><div><strong>Collin Professional</strong><span>Executive 5.6</span></div></div>
   <nav id="nav">
     <button data-tab="home" class="active">🏠 Visão Geral</button>
     <button data-tab="clientes">👥 Clientes</button>
@@ -28,7 +69,7 @@
 <main>
 <header class="topbar">
   <div><span class="eyebrow" data-edit-key="topEyebrow">Representante Collin Professional</span><h1 id="pageTitle" data-edit-key="pageTitleHome">Visão Geral</h1></div>
-  <div class="top-actions"><button class="btn secondary" id="reloadBtn">Atualizar</button><button class="btn" onclick="window.print()">Exportar PDF</button></div>
+  <div class="top-actions"><button class="btn secondary" id="reloadBtn">Atualizar</button><button class="btn secondary" id="logoutBtn">Sair</button><button class="btn" onclick="window.print()">Exportar PDF</button></div>
 </header>
 
 <section class="hero">
@@ -104,9 +145,32 @@
 
 <section id="relatorio" class="tab">
   <article class="panel"><div class="panel-head"><div><span class="eyebrow">Relatório</span><h3 data-edit-key="relatorioTitle">Resumo semanal</h3></div><button class="btn" onclick="copyReport()">Copiar</button></div><pre id="reportText"></pre><a id="reportWhats" class="btn whatsapp" target="_blank">Abrir WhatsApp</a></article>
+
+  <article class="panel">
+    <div class="panel-head">
+      <div>
+        <span class="eyebrow">Acesso</span>
+        <h3>Alterar senha local</h3>
+      </div>
+      <button class="btn secondary" onclick="saveLoginPassword()">Salvar senha</button>
+    </div>
+    <div class="editor-grid">
+      <div class="editor-field">
+        <label>Nova senha do dashboard</label>
+        <small>Essa senha fica salva apenas neste navegador.</small>
+        <input id="newLoginPass" type="password" placeholder="Nova senha">
+      </div>
+      <div class="editor-field">
+        <label>Usuário atual</label>
+        <small>Nome usado na tela de entrada.</small>
+        <input id="savedLoginUser" placeholder="Lucas">
+      </div>
+    </div>
+  </article>
+
 </section>
 
-<footer><span>Collin Professional Dashboard 5.5</span><span id="footerUpdate"></span></footer>
+<footer><span>Collin Professional Dashboard 5.6</span><span id="footerUpdate"></span></footer>
 </main>
 </div>
 <div id="toast" class="toast">Copiado</div>
