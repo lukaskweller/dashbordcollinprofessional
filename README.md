@@ -60,3 +60,9 @@ collin2026
 
 Abra no GitHub Pages:
 https://lukaskweller.github.io/dashbordrepresetantecollin/?v=executive
+
+
+## Atualização Mobile Executive
+- No celular, removida a exibição do nome da planilha no cabeçalho.
+- Título inicial alterado para boas-vindas ao representante.
+- Adicionado calendário comercial com resumo do dia.

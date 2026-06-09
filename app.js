@@ -27,7 +27,7 @@ function msg(c,t='cobranca'){if(t==='visita')return`Olá, ${c.nome}! Tudo bem? S
 function whats(c,t){return 'https://wa.me/?text='+encodeURIComponent(msg(c,t))}
 function maps(c){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(c.bairro+' Santa Catarina')}
 function actions(c,t){return`<div class="actions"><a class="btn whatsapp" target="_blank" href="${whats(c,t)}">Whats</a><button class="btn dark" onclick="copyText(msg(DATA.clientes.find(x=>x.id===${c.id}),'${t||'cobranca'}'))">Copiar</button><a class="btn blue" target="_blank" href="${maps(c)}">Mapa</a></div>`}
-function tab(id){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));$('pageTitle').textContent={home:'Dashboard Executive',clientes:'Clientes',bairros:'Bairros',cobranca:'Cobrança',visitas:'Visitas',metas:'Metas',comissao:'Comissão',performance:'Performance',relatorio:'Relatório',perfil:'Perfil Comercial'}[id];setTimeout(drawAll,80)}
+function tab(id){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));$('pageTitle').textContent={home:'Bem-vindo, Lucas',clientes:'Clientes',bairros:'Bairros',cobranca:'Cobrança',visitas:'Visitas',metas:'Metas',comissao:'Comissão',performance:'Performance',relatorio:'Relatório',perfil:'Perfil Comercial'}[id];setTimeout(drawAll,80)}
 
 function renderProfile(){
   const k=DATA.kpis;
@@ -50,7 +50,20 @@ function initPresentationMode(){
   };
 }
 
-function renderAll(){renderKpis();renderSmart();renderClientes();renderBairros();renderCobranca();renderVisitas();renderMetas();renderComissao();renderPerformance();renderReport();renderProfile();drawAll();$('footerUpdate').textContent='Atualizado em '+new Date(DATA.updatedAt).toLocaleString('pt-BR');$('syncText').textContent=DATA.kpis.clientes+' clientes • '+(DATA.source||'base local');$('heroProjection').textContent=money(DATA.kpis.projecaoSalarioMes)}
+
+function renderCalendar(){
+  const now=new Date();
+  const meses=['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+  const dias=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+  if($('calendarDay'))$('calendarDay').textContent=String(now.getDate()).padStart(2,'0');
+  if($('calendarMonth'))$('calendarMonth').textContent=meses[now.getMonth()];
+  if($('calendarTitle'))$('calendarTitle').textContent='Olá, Lucas — '+dias[now.getDay()];
+  if($('calendarText')&&DATA){
+    $('calendarText').textContent=`${DATA.kpis.ativos} clientes ativos • ${DATA.kpis.atrasados} cobranças críticas • ${DATA.kpis.visitasCarteiraBaixa} visitas sugeridas`;
+  }
+}
+
+function renderAll(){renderKpis();renderSmart();renderClientes();renderBairros();renderCobranca();renderVisitas();renderMetas();renderComissao();renderPerformance();renderReport();renderProfile();renderCalendar();drawAll();$('footerUpdate').textContent='Atualizado em '+new Date(DATA.updatedAt).toLocaleString('pt-BR');$('syncText').textContent=DATA.kpis.clientes+' clientes na carteira';$('heroProjection').textContent=money(DATA.kpis.projecaoSalarioMes)}
 function renderKpis(){const k=DATA.kpis,g=DATA.goals;const cards=[['Clientes',k.clientes,'Todos cadastrados'],['Ativos',k.ativos,'Pago + Não pago + Cobrar'],['Inativos',k.inativos,'Quitados'],['Recebido semana',money(k.recebidoSemana),'Parcelas pagas'],['Carteira',money(k.carteira),'Total carteira'],['Devedor',money(k.devedor),'Saldo aberto'],['Comissão semana',money(k.comissaoSemana),'15% + ajuda custo'],['Visitas',k.visitasCarteiraBaixa,'Carteira entre R$0 e R$150']];$('homeKpis').innerHTML=cards.map(c=>`<article class="kpi"><small>${c[0]}</small><b>${c[1]}</b><span>${c[2]}</span></article>`).join('');$('heroGoal').textContent=`${g.clientesAbertos}/${g.clientesMeta}`;$('heroProgress').style.width=g.clientesProgresso+'%'}
 function renderSmart(){const k=DATA.kpis;const cards=[['Maior devedor',`${k.maiorDevedor?.nome||'-'} — ${money(k.maiorDevedor?.saldoDevedor)}`],['Maior parcela',`${k.maiorParcela?.nome||'-'} — ${money(k.maiorParcela?.valorParcela)}`],['Ticket médio',money(k.ticketMedio)],['Projeção salário mês',money(k.projecaoSalarioMes)]];$('smartCards').innerHTML=cards.map(c=>`<article class="card"><small>${c[0]}</small><b>${c[1]}</b></article>`).join('')}
 function renderClientes(){const q=($('searchInput').value||'').toLowerCase();const list=DATA.clientes.filter(c=>(c.cliente+' '+c.bairro+' '+c.status).toLowerCase().includes(q));$('clientRows').innerHTML=list.map(c=>`<tr><td><b>${c.nome}</b><br><small>${c.cliente}</small></td><td>${c.bairro}</td><td>${money(c.saldoCarteira)}</td><td>${money(c.saldoDevedor)}</td><td>${money(c.valorParcela)}</td><td><span class="status ${cls(c.status)}">${c.status}</span></td><td>${actions(c)}</td></tr>`).join('')}
