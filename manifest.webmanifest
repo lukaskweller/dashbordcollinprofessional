@@ -1,0 +1,15 @@
+{
+  "name": "Collin Professional Dashboard 5.3",
+  "short_name": "Collin 5.3",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f3f1",
+  "theme_color": "#C89080",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
